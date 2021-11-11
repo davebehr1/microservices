@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+
+option go_package = "/proto/volume";
+
+
+package go.srv.volume;
+
+service VolumeService {
+    rpc Add(AddParams) returns (Response) {}
+}
+
+message AddParams {
+    int32 numOne = 1;
+    int32 numTwo = 2;
+}
+
+message Response {
+  int32 total = 1;
+}

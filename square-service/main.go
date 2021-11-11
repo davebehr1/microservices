@@ -6,8 +6,9 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
-	"temporal-microservices/square-service/constants"
-	"temporal-microservices/square-service/square"
+
+	"github.com/davebehr1/temporal-microservices/square-service/constants"
+	"github.com/davebehr1/temporal-microservices/square-service/square"
 
 	"go.temporal.io/sdk/client"
 	"go.temporal.io/sdk/worker"

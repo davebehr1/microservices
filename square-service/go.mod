@@ -1,4 +1,4 @@
-module temporal-microservices/square-service
+module github.com/davebehr1/temporal-microservices/square-service
 
 go 1.17
 

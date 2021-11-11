@@ -2,8 +2,10 @@ package volume
 
 import (
 	"context"
-	"temporal-microservices/svolume-service/constants"
-	"temporal-microservices/svolume-service/domain"
+
+	"github.com/davebehr1/temporal-microservices/volume-service/domain"
+
+	"github.com/davebehr1/temporal-microservices/volume-service/constants"
 )
 
 var ParallelepipedVolumeActivityName = domain.GetActivityName(Service{}.CalculateParallelepipedVolume)
