@@ -1,14 +1,11 @@
 package main
 
 import (
-	"context"
 	"log"
 	"net"
 	"os"
 	"os/signal"
 	"syscall"
-
-	pb "github.com/davebehr1/microservices/volume-service/proto/volume"
 
 	"github.com/davebehr1/microservices/volume-service/constants"
 
@@ -16,39 +13,10 @@ import (
 
 	"go.temporal.io/sdk/client"
 	"go.temporal.io/sdk/worker"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/reflection"
 )
-
-const (
-	port = ":50051"
-)
-
-type service struct {
-	pb.UnimplementedVolumeServiceServer
-}
-
-func (s *service) Add(ctx context.Context, req *pb.AddParams) (*pb.Response, error) {
-
-	return &pb.Response{Total: req.NumOne + req.NumTwo}, nil
-}
 
 func main() {
 	log.Print("starting VOLUME microservice")
-
-	lis, err := net.Listen("tcp", port)
-	if err != nil {
-		log.Fatalf("failed to listen: %v", err)
-	}
-	s := grpc.NewServer()
-
-	pb.RegisterVolumeServiceServer(s, &service{})
-
-	// Register reflection service on gRPC server.
-	reflection.Register(s)
-	if err := s.Serve(lis); err != nil {
-		log.Fatalf("failed to serve: %v", err)
-	}
 
 	temporalClient := initTemporalClient()
 

@@ -9,8 +9,6 @@ import (
 	"os/signal"
 	"syscall"
 
-	pb "github.com/davebehr1/microservices/volume-service/proto/volume"
-
 	"time"
 
 	"github.com/davebehr1/microservices/workflow-service/constants"
@@ -19,23 +17,10 @@ import (
 	"github.com/gorilla/mux"
 	"go.temporal.io/sdk/client"
 	"go.temporal.io/sdk/worker"
-	"google.golang.org/grpc"
-)
-
-const (
-	address         = "localhost:50051"
-	defaultFilename = "consignment.json"
 )
 
 func main() {
-
-	conn, err := grpc.Dial(address, grpc.WithInsecure())
-	if err != nil {
-		log.Fatalf("Did not connect: %v", err)
-	}
-	defer conn.Close()
-	client := pb.NewVolumeServiceClient(conn)
-	client.Add(context.Background(), &pb.AddParams{NumOne: 1, NumTwo: 2})
+	log.Print("starting FIGURE WORKFLOW microservice")
 
 	temporalClient := initTemporalClient()
 
@@ -48,7 +33,7 @@ func main() {
 
 	<-signals
 
-	err = httpServer.Shutdown(context.Background())
+	err := httpServer.Shutdown(context.Background())
 	if err != nil {
 		log.Fatal("cannot gracefully stop HTTP server: " + err.Error())
 	}
