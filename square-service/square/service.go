@@ -3,11 +3,18 @@ package square
 import (
 	"context"
 
-	"github.com/davebehr1/microservices/square-service/constants"
-	"github.com/davebehr1/microservices/square-service/domain"
+	"github.com/davebehr1/microservices/temporal-common/common"
 )
 
-var RectangleSquareActivityName = domain.GetActivityName(Service{}.CalculateRectangleSquare)
+const (
+	SquareActivityQueue = "SquareActivityQueue"
+
+	MaxConcurrentSquareActivitySize = 10
+
+	HeartbeatIntervalSec = 1
+)
+
+var RectangleSquareActivityName = common.GetActivityName(Service{}.CalculateRectangleSquare)
 
 type Rectangle struct {
 	ID     string
@@ -26,7 +33,7 @@ type CalculateRectangleSquareResponse struct {
 }
 
 func (s Service) CalculateRectangleSquare(ctx context.Context, req CalculateRectangleSquareRequest) (resp CalculateRectangleSquareResponse, err error) {
-	heartbeat := domain.StartHeartbeat(ctx, constants.HeartbeatIntervalSec)
+	heartbeat := common.StartHeartbeat(ctx, HeartbeatIntervalSec)
 	defer heartbeat.Stop()
 
 	resp.Squares = make(map[string]float64, len(req.Rectangles))

@@ -7,7 +7,6 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/davebehr1/microservices/square-service/constants"
 	"github.com/davebehr1/microservices/square-service/square"
 
 	"go.temporal.io/sdk/client"
@@ -42,9 +41,9 @@ func initTemporalClient() client.Client {
 
 func initActivityWorker(temporalClient client.Client) worker.Worker {
 	workerOptions := worker.Options{
-		MaxConcurrentActivityExecutionSize: constants.MaxConcurrentSquareActivitySize,
+		MaxConcurrentActivityExecutionSize: square.MaxConcurrentSquareActivitySize,
 	}
-	worker := worker.New(temporalClient, constants.SquareActivityQueue, workerOptions)
+	worker := worker.New(temporalClient, square.SquareActivityQueue, workerOptions)
 	worker.RegisterActivity(square.Service{}.CalculateRectangleSquare)
 
 	err := worker.Start()
