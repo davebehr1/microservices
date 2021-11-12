@@ -11,7 +11,6 @@ import (
 
 	"time"
 
-	"github.com/davebehr1/microservices/workflow-service/constants"
 	"github.com/davebehr1/microservices/workflow-service/controller"
 	"github.com/davebehr1/microservices/workflow-service/workflow"
 	"github.com/gorilla/mux"
@@ -54,9 +53,9 @@ func initTemporalClient() client.Client {
 
 func initWorkflowWorker(temporalClient client.Client) worker.Worker {
 	workerOptions := worker.Options{
-		MaxConcurrentWorkflowTaskExecutionSize: constants.MaxConcurrentFigureWorkflowSize,
+		MaxConcurrentWorkflowTaskExecutionSize: workflow.MaxConcurrentFigureWorkflowSize,
 	}
-	worker := worker.New(temporalClient, constants.FigureWorkflowQueue, workerOptions)
+	worker := worker.New(temporalClient, workflow.FigureWorkflowQueue, workerOptions)
 	worker.RegisterWorkflow(workflow.CalculateParallelepipedWorkflow)
 
 	err := worker.Start()

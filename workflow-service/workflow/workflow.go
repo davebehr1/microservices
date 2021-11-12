@@ -6,13 +6,19 @@ import (
 	"github.com/davebehr1/microservices/square-service/square"
 	"github.com/davebehr1/microservices/volume-service/volume"
 
-	"github.com/davebehr1/microservices/workflow-service/constants"
-
 	"time"
 
 	"github.com/ulule/deepcopier"
 	"go.temporal.io/sdk/temporal"
 	"go.temporal.io/sdk/workflow"
+)
+
+const (
+	SquareActivityQueue = "SquareActivityQueue"
+	VolumeActivityQueue = "VolumeActivityQueue"
+	FigureWorkflowQueue = "FigureWorkflowQueue"
+
+	MaxConcurrentFigureWorkflowSize = 3
 )
 
 type Parallelepiped struct {
@@ -108,7 +114,7 @@ func CalculateParallelepipedWorkflow(ctx workflow.Context, req CalculateParallel
 func processSquareAsync(cancelCtx workflow.Context, batch []Parallelepiped) workflow.Future {
 	future, settable := workflow.NewFuture(cancelCtx)
 	workflow.Go(cancelCtx, func(ctx workflow.Context) {
-		ctx = withActivityOptions(ctx, constants.SquareActivityQueue)
+		ctx = withActivityOptions(ctx, SquareActivityQueue)
 		respSquare := square.CalculateRectangleSquareResponse{}
 		// map the domain structures
 		dimensions, err := copySquareBatch(batch)
@@ -137,7 +143,7 @@ func copySquareBatch(source []Parallelepiped) (dest []square.Rectangle, err erro
 func processVolumeAsync(cancelCtx workflow.Context, batch []Parallelepiped) workflow.Future {
 	future, settable := workflow.NewFuture(cancelCtx)
 	workflow.Go(cancelCtx, func(ctx workflow.Context) {
-		ctx = withActivityOptions(ctx, constants.VolumeActivityQueue)
+		ctx = withActivityOptions(ctx, VolumeActivityQueue)
 		respVolume := volume.CalculateParallelepipedVolumeResponse{}
 		// map the domain structures
 		dimensions, err := copyVolumeBatch(batch)

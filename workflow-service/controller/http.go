@@ -6,7 +6,6 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/davebehr1/microservices/workflow-service/constants"
 	"github.com/davebehr1/microservices/workflow-service/workflow"
 	"go.temporal.io/sdk/client"
 )
@@ -52,7 +51,7 @@ func getWorkflowRequest(req *http.Request) (wr workflow.CalculateParallelepipedW
 
 func executeWorkflow(ctx context.Context, temporalClient client.Client, wReq workflow.CalculateParallelepipedWorkflowRequest) (output []workflow.Parallelepiped, err error) {
 	workflowOptions := client.StartWorkflowOptions{
-		TaskQueue: constants.FigureWorkflowQueue,
+		TaskQueue: workflow.FigureWorkflowQueue,
 	}
 	workflowRun, err := temporalClient.ExecuteWorkflow(ctx, workflowOptions, workflow.CalculateParallelepipedWorkflow, wReq)
 	if err != nil {
