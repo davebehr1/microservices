@@ -3,7 +3,7 @@ package square
 import (
 	"context"
 
-	"github.com/davebehr1/microservices/temporal-common/common"
+	common "github.com/davebehr1/microservices/temporal-common"
 )
 
 const (

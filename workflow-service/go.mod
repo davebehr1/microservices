@@ -10,7 +10,6 @@ require (
 	github.com/stretchr/testify v1.7.0
 	github.com/ulule/deepcopier v0.0.0-20200430083143-45decc6639b6
 	go.temporal.io/sdk v1.11.0
-	google.golang.org/grpc v1.42.0
 )
 
 require (
@@ -37,6 +36,7 @@ require (
 	golang.org/x/text v0.3.7 // indirect
 	golang.org/x/time v0.0.0-20210723032227-1f47c861a9ac // indirect
 	google.golang.org/genproto v0.0.0-20211111162719-482062a4217b // indirect
+	google.golang.org/grpc v1.42.0 // indirect
 	google.golang.org/protobuf v1.27.1 // indirect
 	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b // indirect
 )

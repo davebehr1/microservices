@@ -92,7 +92,6 @@ func CalculateParallelepipedWorkflow(ctx workflow.Context, req CalculateParallel
 		count++
 	}
 
-	// wait until everything processed
 	for i := 0; i < count; i++ {
 		selector.Select(ctx)
 		if errOneBatch != nil {
@@ -100,7 +99,6 @@ func CalculateParallelepipedWorkflow(ctx workflow.Context, req CalculateParallel
 		}
 	}
 
-	// map the output
 	var outputFigures = make([]Parallelepiped, 0, len(req.Parallelepipeds))
 	for _, p := range req.Parallelepipeds {
 		outputP := p
@@ -116,7 +114,6 @@ func processSquareAsync(cancelCtx workflow.Context, batch []Parallelepiped) work
 	workflow.Go(cancelCtx, func(ctx workflow.Context) {
 		ctx = withActivityOptions(ctx, SquareActivityQueue)
 		respSquare := square.CalculateRectangleSquareResponse{}
-		// map the domain structures
 		dimensions, err := copySquareBatch(batch)
 		if err != nil {
 			settable.Set(nil, err)
@@ -145,7 +142,7 @@ func processVolumeAsync(cancelCtx workflow.Context, batch []Parallelepiped) work
 	workflow.Go(cancelCtx, func(ctx workflow.Context) {
 		ctx = withActivityOptions(ctx, VolumeActivityQueue)
 		respVolume := volume.CalculateParallelepipedVolumeResponse{}
-		// map the domain structures
+
 		dimensions, err := copyVolumeBatch(batch)
 		if err != nil {
 			settable.Set(nil, err)
@@ -193,7 +190,6 @@ func batchCount(wholeSize, batchSize int) int {
 	return int(math.Ceil(float64(wholeSize) / float64(batchSize)))
 }
 
-// batchNumber starts from 0, see the tests
 func makeBatch(source []Parallelepiped, batchNumber, batchSize int) []Parallelepiped {
 	start := batchNumber * batchSize
 	end := start + batchSize

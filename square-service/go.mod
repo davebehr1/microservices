@@ -5,6 +5,7 @@ go 1.17
 require go.temporal.io/sdk v1.11.0
 
 require (
+	github.com/davebehr1/microservices/temporal-common v0.0.0-20211112092620-079af1cfcb2b // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/facebookgo/clock v0.0.0-20150410010913-600d898af40a // indirect
 	github.com/gogo/googleapis v1.4.1 // indirect
