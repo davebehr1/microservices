@@ -1,8 +1,8 @@
 package workflow
 
 import (
-	"github.com/davebehr1/temporal-microservices/square-service/square"
-	"github.com/davebehr1/temporal-microservices/volume-service/volume"
+	"github.com/davebehr1/microservices/square-service/square"
+	"github.com/davebehr1/microservices/volume-service/volume"
 
 	"testing"
 

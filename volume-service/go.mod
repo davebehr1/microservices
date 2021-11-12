@@ -1,4 +1,4 @@
-module github.com/davebehr1/temporal-microservices/volume-service
+module github.com/davebehr1/microservices/volume-service
 
 go 1.17
 

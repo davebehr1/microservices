@@ -8,12 +8,14 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
-	pb "temporal-microservices/svolume-service/proto/volume"
-	"temporal-microservices/workflow-service/constants"
-	"temporal-microservices/workflow-service/controller"
-	"temporal-microservices/workflow-service/workflow"
+
+	pb "github.com/davebehr1/microservices/volume-service/proto/volume"
+
 	"time"
 
+	"github.com/davebehr1/microservices/workflow-service/constants"
+	"github.com/davebehr1/microservices/workflow-service/controller"
+	"github.com/davebehr1/microservices/workflow-service/workflow"
 	"github.com/gorilla/mux"
 	"go.temporal.io/sdk/client"
 	"go.temporal.io/sdk/worker"

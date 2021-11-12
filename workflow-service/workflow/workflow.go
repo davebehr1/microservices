@@ -3,11 +3,10 @@ package workflow
 import (
 	"math"
 
-	"github.com/davebehr1/temporal-microservices/square-service/square"
+	"github.com/davebehr1/microservices/square-service/square"
+	"github.com/davebehr1/microservices/volume-service/volume"
 
-	"github.com/davebehr1/temporal-microservices/volume-service/volume"
-
-	"github.com/davebehr1/temporal-microservices/workflow-service/constants"
+	"github.com/davebehr1/microservices/workflow-service/constants"
 
 	"time"
 

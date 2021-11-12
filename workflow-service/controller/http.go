@@ -5,9 +5,9 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
-	"temporal-microservices/workflow-service/constants"
-	"temporal-microservices/workflow-service/workflow"
 
+	"github.com/davebehr1/microservices/workflow-service/constants"
+	"github.com/davebehr1/microservices/workflow-service/workflow"
 	"go.temporal.io/sdk/client"
 )
 

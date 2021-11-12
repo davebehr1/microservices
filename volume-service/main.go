@@ -8,11 +8,11 @@ import (
 	"os/signal"
 	"syscall"
 
-	pb "github.com/davebehr1/temporal-microservices/volume-service/proto/volume"
+	pb "github.com/davebehr1/microservices/volume-service/proto/volume"
 
-	"github.com/davebehr1/temporal-microservices/volume-service/constants"
+	"github.com/davebehr1/microservices/volume-service/constants"
 
-	"github.com/davebehr1/temporal-microservices/volume-service/volume"
+	"github.com/davebehr1/microservices/volume-service/volume"
 
 	"go.temporal.io/sdk/client"
 	"go.temporal.io/sdk/worker"

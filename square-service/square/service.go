@@ -3,8 +3,8 @@ package square
 import (
 	"context"
 
-	"github.com/davebehr1/temporal-microservices/square-service/constants"
-	"github.com/davebehr1/temporal-microservices/square-service/domain"
+	"github.com/davebehr1/microservices/square-service/constants"
+	"github.com/davebehr1/microservices/square-service/domain"
 )
 
 var RectangleSquareActivityName = domain.GetActivityName(Service{}.CalculateRectangleSquare)
